@@ -1,0 +1,13 @@
+name: NLPApp
+title: NLPApp
+username:
+account: iskarwaluyo
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5403202
+bundleId: 5441692
+url: https://iskarwaluyo.shinyapps.io/NLPApp/
+when: 1641503886.89558
+lastSyncTime: 1641503886.89562
+asMultiple: FALSE
+asStatic: FALSE

@@ -41,21 +41,6 @@ shinyServer(function(input, output) {
 #    data_source <<- datasetInput2()
 #  })
   
-  datasetInputA <- reactive({
-    input$number_of_chunks
-  })
-  
-  output$number_of_chunks <- renderPrint({
-    number_of_chunks <- datasetInputA()
-  })  
-
-  datasetInputB <- reactive({
-    input$corpus_n
-  })
-  
-  output$corpus_n <- renderPrint({
-    corpus_n <<- datasetInputB()
-  })  
 
   datasetInputC <- reactive({
     input$phrase_input
@@ -105,11 +90,9 @@ shinyServer(function(input, output) {
     data_source <- datasetInput2()
     remove_stepwords <- datasetInput4()
     word_stemming <- datasetInput5()
-    number_of_chunks <- datasetInputA()
-    corpus_n <<- datasetInputB()
     phrase_input <<- datasetInputC()
     
-    directory <- "https://magicmixtape.club/sigdata/nlp_data/data/"
+    directory <- "https://raw.githubusercontent.com/iskarwaluyo/nlp_app/master/sample_data/"
     language_select <- datasetInput()
     data_source <- datasetInput2()
     
@@ -129,19 +112,11 @@ shinyServer(function(input, output) {
     data_source <- datasetInput2()
     remove_stepwords <- datasetInput4()
     word_stemming <- datasetInput5()
-    number_of_chunks <- datasetInputA()
-    corpus_n <- datasetInputB()
 
-    # SPLIT CORPUS IN "N" CHUNKS
-    chunks <- function(number_of_chunks, corpus_n)
-    {
-      # SPLITS TEXT DATA INTO "N" CHUNKS
-      split_data <<- split(text_data, sample(1:number_of_chunks, replace=F))
-      # CREATES CORPUS OF SPLIT DATA
-      split_corpus <<- lapply(split_data, corpus)
-    } 
-    chunks(number_of_chunks)
-    head(split_data[[corpus_n]])
+    split_data <<- text_data
+
+    split_corpus <<- corpus(split_data)
+
   })
 
   
@@ -154,12 +129,9 @@ shinyServer(function(input, output) {
     data_source <- datasetInput2()
     remove_stepwords <- datasetInput4()
     word_stemming <- datasetInput5()
-    number_of_chunks <- datasetInputA()
-    corpus_n <- datasetInputB()
     
-    
-    corpus_tokeinze <- function(corpus_n, remove_stepwords, word_stemming){
-      corpus_select <- split_corpus[[corpus_n]]
+    corpus_tokeinze <- function(remove_stepwords, word_stemming){
+      corpus_select <- split_corpus
       
       sample_corpus_tokens <<- tokens(corpus_select)
       
@@ -172,12 +144,12 @@ shinyServer(function(input, output) {
       if (remove_stepwords == "Yes"){
         sample_corpus_tokens_clean <<- tokens_wordstem(sample_corpus_tokens_clean, language = "english")
       }
-      else{sample_corpus_tokens_clean <- sample_corpus_tokens_clean}
+      else{sample_corpus_tokens_clean <<- sample_corpus_tokens_clean}
       
       if (word_stemming == "Yes"){
         sample_corpus_tokens_clean <<- tokens_remove(sample_corpus_tokens_clean, c(stopwords("english")))
       }
-      else{sample_corpus_tokens_clean <- sample_corpus_tokens_clean}
+      else{sample_corpus_tokens_clean <<- sample_corpus_tokens_clean}
     }
     
     corpus_tokeinze(corpus_select, remove_stepwords, word_stemming)
@@ -191,10 +163,9 @@ shinyServer(function(input, output) {
     data_source <- datasetInput2()
     remove_stepwords <- datasetInput4()
     word_stemming <- datasetInput5()
-    number_of_chunks <- datasetInputA()
+    corpus_tokens <- sample_corpus_tokens_clean
     
     ngram_create <- function(corpus_tokens){
-      corpus_tokens <- sample_corpus_tokens_clean
       # PART III: NATURAL LANGUAGE PROCESSING WITH "quanteda" and "tm" PACKAGE
       dfm_corpus_tokens <<- dfm(corpus_tokens)
       # TERM FREQUENCE (TF) CALCULATES THE OCCURENCE OF TERMS IN A DOCUMENT
@@ -249,7 +220,6 @@ shinyServer(function(input, output) {
     data_source <- datasetInput2()
     remove_stepwords <- datasetInput4()
     word_stemming <- datasetInput5()
-    number_of_chunks <- datasetInputA()
     
     ngram_select <- datasetInput6()
   
@@ -306,7 +276,7 @@ shinyServer(function(input, output) {
     }
     else {print("Please select 1 to 3 only.")}
   }
-    
+  ngram_plot(ngram_select)
   })
 
   
@@ -316,12 +286,11 @@ shinyServer(function(input, output) {
     data_source <- datasetInput2()
     remove_stepwords <- datasetInput4()
     word_stemming <- datasetInput5()
-    number_of_chunks <- datasetInputA()
     
     ngram_select <- datasetInput6()
     phrase_input <- datasetInputC()
     
-    head(kwic(split_data[[corpus_n]], pattern = phrase(phrase_input)))
+    head(kwic(split_data, pattern = phrase(phrase_input)))
     
   })
   
@@ -331,15 +300,14 @@ shinyServer(function(input, output) {
     data_source <- datasetInput2()
     remove_stepwords <- datasetInput4()
     word_stemming <- datasetInput5()
-    number_of_chunks <- datasetInputA()
-    
+
     ngram_select <- datasetInput6()
     phrase_input <- datasetInputC()
     
     gram_length <- length(as.character(tokens(phrase_input)))
     
     library(sbo)
-    p <- sbo_predictor(split_data[[corpus_n]], # 50k tweets, example dataset
+    p <- sbo_predictor(split_data, # 50k tweets, example dataset
                        N = gram_length, # Train a n-gram model
                        dict = sbo::twitter_dict, # Top 1k words appearing in corpus
                        .preprocess = sbo::preprocess, # Preprocessing transformation

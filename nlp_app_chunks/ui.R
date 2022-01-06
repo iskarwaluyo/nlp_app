@@ -30,7 +30,8 @@ shinyUI(fluidPage(
    selectInput("word_stemming", "Would you like to stem words?", 
                 choices = c("Yes", "No")),
     
-    # helpText("Note:"),
+    helpText("Note: This version only works with data downloaded locally. 
+             Please edit the directory parameter in roder to run."),
     
     submitButton("Actualizar Vista"),
     

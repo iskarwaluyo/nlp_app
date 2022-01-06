@@ -109,7 +109,7 @@ shinyServer(function(input, output) {
     corpus_n <<- datasetInputB()
     phrase_input <<- datasetInputC()
     
-    directory <- "https://magicmixtape.club/sigdata/nlp_data/data/"
+    directory <- "/media/iskar/archivos/R/DATA_SCIENCE_CAPSTONE/datos/final"
     language_select <- datasetInput()
     data_source <- datasetInput2()
     

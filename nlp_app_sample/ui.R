@@ -19,20 +19,15 @@ shinyUI(fluidPage(
     selectInput("data_source", "Select dataset source:", 
                 choices = c("Twitter", "News", "Blogs")),
     
-   sliderInput("number_of_chunks", "Number of chunks to split corpus in:",
-                min = 0, max = 50, value = 20),
-    
-   sliderInput("corpus_n", "Observations:", 10, min = 1, max = 50),
-    
    selectInput("remove_stopwords", "Would you like to remove stopwords?", 
                 choices = c("Yes", "No")),
     
    selectInput("word_stemming", "Would you like to stem words?", 
                 choices = c("Yes", "No")),
     
-    # helpText("Note:"),
+    helpText("Note: This version works with a 10% sample of the original data set hosted in a free Github account and may not find all phrases."),
     
-    submitButton("Actualizar Vista"),
+    submitButton("Submit input data"),
     
   ),
   
@@ -45,10 +40,6 @@ shinyUI(fluidPage(
     verbatimTextOutput("corpus_create"),
     paste0("Sample of chunk: "),
     verbatimTextOutput("chunks"),
-
-    selectInput("ngram_select", "Number of n-grams for plot:", 
-                choices = c("1", "2", "3")),
-    verbatimTextOutput("ngram_plot"),
     
     h4("Text search:"),
     textInput("phrase_input", "Enter text to search for:", "of bacon"),
@@ -56,7 +47,11 @@ shinyUI(fluidPage(
     verbatimTextOutput("phrase_search"),
     
     h4("Possible next words: "),
-    verbatimTextOutput("nextword_predict")
+    verbatimTextOutput("nextword_predict"),
+    
+    selectInput("ngram_select", "Number of n-grams for plot:", 
+                choices = c("1", "2", "3")),
+    plotOutput("ngram_plot")
     
   )
 ))

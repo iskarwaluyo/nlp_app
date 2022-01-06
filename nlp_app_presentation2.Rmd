@@ -1,0 +1,48 @@
+---
+title: "Natural Language Processing App (NLPApp) Demo"
+author: "Iskar Waluyo Moreno"
+date: "1/6/2022"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## NLPApp
+
+The Natural Language Processing App (NLPApp) is designed to help easily analyze large quantities of text. The user can select the language of the data source and data source. The data source and languages will depend on the source of the data the user or client needs to analyze. 
+<center>
+![](/media/iskar/archivos/R/DATA_SCIENCE_CAPSTONE/nlp_app/images/nlp.jpg)
+</center>
+
+The NLPApp can have a number of functionalities adapted to the client's needs. In the demo app we have datasets from three sources (Twitter, News and Blogs) and four languages (English, German, Finish and Russian). 
+
+## Demo description
+
+In this demo the user can select the language and data source that needs to be analyzed. 
+For demonstration purposes we have implemented the following functionalities: 
+
+1. View a sample of the text that is to be analyzed.
+2. Plot the most common unigrams, bigrams and trigrams. 
+3. Text search - Allows user to search occurences of phrases.
+4. Text prediction - Allows user to view the most probable next word given a certain phrase.
+
+However, other functionalities can be determined by the client.
+
+## Some NLPApp screenshots
+
+
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
