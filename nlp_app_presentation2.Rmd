@@ -4,6 +4,7 @@ author: "Iskar Waluyo Moreno"
 date: "1/6/2022"
 output: slidy_presentation
 ---
+![](https://raw.githubusercontent.com/iskarwaluyo/nlp_app/master/images/nlp.jpg)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
