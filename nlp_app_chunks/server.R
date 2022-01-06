@@ -109,7 +109,7 @@ shinyServer(function(input, output) {
     corpus_n <<- datasetInputB()
     phrase_input <<- datasetInputC()
     
-    directory <- "/media/iskar/archivos/R/DATA_SCIENCE_CAPSTONE/datos/final"
+    directory <- "/media/iskar/archivos/R/DATA_SCIENCE_CAPSTONE/datos/final/"
     language_select <- datasetInput()
     data_source <- datasetInput2()
     
@@ -306,6 +306,7 @@ shinyServer(function(input, output) {
     }
     else {print("Please select 1 to 3 only.")}
   }
+  ngram_plot(ngram_select)
     
   })
 

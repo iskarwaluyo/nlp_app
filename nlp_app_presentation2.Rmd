@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 The Natural Language Processing App (NLPApp) is designed to help easily analyze large quantities of text. The user can select the language of the data source and data source. The data source and languages will depend on the source of the data the user or client needs to analyze. 
 <center>
-![](/media/iskar/archivos/R/DATA_SCIENCE_CAPSTONE/nlp_app/images/nlp.jpg)
+![](https://raw.githubusercontent.com/iskarwaluyo/nlp_app/master/images/nlp.jpg)
 </center>
 
 The NLPApp can have a number of functionalities adapted to the client's needs. In the demo app we have datasets from three sources (Twitter, News and Blogs) and four languages (English, German, Finish and Russian). 
@@ -28,21 +28,23 @@ For demonstration purposes we have implemented the following functionalities:
 3. Text search - Allows user to search occurences of phrases.
 4. Text prediction - Allows user to view the most probable next word given a certain phrase.
 
+[For more information about unigrams, bigrams and trigrams:]. (https://en.wikipedia.org/wiki/N-gram).
+
 However, other functionalities can be determined by the client.
 
-## Some NLPApp screenshots
+## Try NLPApp with sample data
+
+These are some screenshots of the NLPApp demo.
+
+<center>
+![](https://raw.githubusercontent.com/iskarwaluyo/nlp_app/master/images/screenshot.png)
+</center>
+
+
+[Try a sample version of the app by clicking on the link]. (https://iskarwaluyo.shinyapps.io/NLPApp/).
 
 
 
-## Slide with R Output
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
 
-## Slide with Plot
-
-```{r pressure}
-plot(pressure)
-```
 

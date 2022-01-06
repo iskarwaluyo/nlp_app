@@ -46,10 +46,6 @@ shinyUI(fluidPage(
     verbatimTextOutput("corpus_create"),
     paste0("Sample of chunk: "),
     verbatimTextOutput("chunks"),
-
-    selectInput("ngram_select", "Number of n-grams for plot:", 
-                choices = c("1", "2", "3")),
-    verbatimTextOutput("ngram_plot"),
     
     h4("Text search:"),
     textInput("phrase_input", "Enter text to search for:", "of bacon"),
@@ -57,7 +53,11 @@ shinyUI(fluidPage(
     verbatimTextOutput("phrase_search"),
     
     h4("Possible next words: "),
-    verbatimTextOutput("nextword_predict")
+    verbatimTextOutput("nextword_predict"),
+    
+    selectInput("ngram_select", "Number of n-grams for plot:", 
+                choices = c("1", "2", "3")),
+    verbatimTextOutput("ngram_plot")
     
   )
 ))
