@@ -38,7 +38,7 @@ However, other functionalities can be determined by the client.
 These are some screenshots of the NLPApp demo.
 
 <center>
-![](https://raw.githubusercontent.com/iskarwaluyo/nlp_app/master/images/screenshotB.png)
+![](https://raw.githubusercontent.com/iskarwaluyo/nlp_app/master/images/screenshot.png)
 </center>
 
 
